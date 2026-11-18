@@ -1,0 +1,377 @@
+{
+  "info": {
+    "name": "Lab11 - Microservicios",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Guía - Tienda",
+      "item": [
+        {
+          "name": "Cliente - Juan",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:8081/api/clientes",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Juan\",\n  \"apellidos\": \"Pérez Gómez\",\n  \"direccion\": \"Av. Javier Prado 123, Lima\",\n  \"telefono\": \"987654321\",\n  \"nroDni\": \"12345678\",\n  \"estado\": \"ACTIVO\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Cliente - María",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:8081/api/clientes",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"María\",\n  \"apellidos\": \"Ramírez Torres\",\n  \"direccion\": \"Calle Los Olivos 456\",\n  \"telefono\": \"912345678\",\n  \"nroDni\": \"87654321\",\n  \"estado\": \"ACTIVO\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Listar clientes",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8081/api/clientes"
+          }
+        },
+        {
+          "name": "Categoria - Laptops",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:8082/api/categorias",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Laptops\",\n  \"estado\": \"ACTIVO\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Categoria - Accesorios",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:8082/api/categorias",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Accesorios\",\n  \"estado\": \"ACTIVO\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Categoria - Impresoras",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:8082/api/categorias",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Impresoras\",\n  \"estado\": \"ACTIVO\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Listar categorias",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8082/api/categorias"
+          }
+        },
+        {
+          "name": "Producto - Laptop",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:8083/api/productos",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Laptop Lenovo ThinkPad\",\n  \"precio\": 3500.0,\n  \"stock\": 15,\n  \"categoriaId\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "Producto - Mouse",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:8083/api/productos",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Mouse Logitech M185\",\n  \"precio\": 89.9,\n  \"stock\": 50,\n  \"categoriaId\": 2\n}"
+            }
+          }
+        },
+        {
+          "name": "Producto - Teclado",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:8083/api/productos",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Teclado Mecánico Redragon\",\n  \"precio\": 199.99,\n  \"stock\": 25,\n  \"categoriaId\": 2\n}"
+            }
+          }
+        },
+        {
+          "name": "Listar productos",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8083/api/productos"
+          }
+        },
+        {
+          "name": "Pedido 1",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:8084/api/pedidos",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fecha\": \"2026-06-10\",\n  \"idCliente\": 1,\n  \"total\": 3679.8,\n  \"detalles\": [\n    {\n      \"idProducto\": 1,\n      \"cantidad\": 1,\n      \"precio\": 3500.0\n    },\n    {\n      \"idProducto\": 2,\n      \"cantidad\": 2,\n      \"precio\": 89.9\n    }\n  ]\n}"
+            }
+          }
+        },
+        {
+          "name": "Pedido 2",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:8084/api/pedidos",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fecha\": \"2026-06-10\",\n  \"idCliente\": 2,\n  \"total\": 579.78,\n  \"detalles\": [\n    {\n      \"idProducto\": 2,\n      \"cantidad\": 2,\n      \"precio\": 89.9\n    },\n    {\n      \"idProducto\": 3,\n      \"cantidad\": 2,\n      \"precio\": 199.99\n    }\n  ]\n}"
+            }
+          }
+        },
+        {
+          "name": "Listar pedidos",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8084/api/pedidos"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Actividad - Clínica Salud Integral",
+      "item": [
+        {
+          "name": "Especialidad",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:8087/api/especialidades",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Cardiología\",\n  \"descripcion\": \"Enfermedades del corazón\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Médico",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:8087/api/medicos",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cmp\": \"CMP-12345\",\n  \"nombres\": \"Luis\",\n  \"apellidos\": \"Torres Vega\",\n  \"telefono\": \"999888777\",\n  \"correo\": \"luis.torres@saludintegral.pe\",\n  \"idEspecialidad\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "Horario del médico",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:8087/api/medicos/1/horarios",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"diaSemana\": \"LUNES\",\n  \"horaInicio\": \"08:00\",\n  \"horaFin\": \"13:00\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Listar médicos",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8087/api/medicos"
+          }
+        },
+        {
+          "name": "Paciente",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:8086/api/pacientes",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dni\": \"44556677\",\n  \"nombres\": \"Rosa\",\n  \"apellidos\": \"Huamán Paredes\",\n  \"fechaNacimiento\": \"1990-04-12\",\n  \"sexo\": \"F\",\n  \"telefono\": \"912345678\",\n  \"direccion\": \"Jr. Ayacucho 321\",\n  \"correo\": \"rosa.huaman@mail.com\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Listar pacientes",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8086/api/pacientes"
+          }
+        },
+        {
+          "name": "Registrar cita",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:8088/api/citas",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fecha\": \"2026-12-01\",\n  \"hora\": \"09:00\",\n  \"idPaciente\": 1,\n  \"idMedico\": 1,\n  \"motivo\": \"Control de presión arterial\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Listar citas",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8088/api/citas"
+          }
+        },
+        {
+          "name": "Buscar cita por ID",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8088/api/citas/1"
+          }
+        },
+        {
+          "name": "Detalle de cita (paciente + médico)",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8088/api/citas/1/detalle"
+          }
+        },
+        {
+          "name": "Confirmar cita",
+          "request": {
+            "method": "PATCH",
+            "url": "http://localhost:8088/api/citas/1/estado",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"estado\": \"CONFIRMADA\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Registrar atención (ATENDIDA)",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:8088/api/citas/1/atencion",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"diagnostico\": \"Hipertensión leve\",\n  \"tratamiento\": \"Dieta baja en sal\",\n  \"observaciones\": \"Control en 30 días\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Cancelar cita",
+          "request": {
+            "method": "PATCH",
+            "url": "http://localhost:8088/api/citas/2/cancelar"
+          }
+        }
+      ]
+    }
+  ]
+}

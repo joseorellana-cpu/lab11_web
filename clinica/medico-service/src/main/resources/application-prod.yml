@@ -1,0 +1,16 @@
+# ===== Perfil de produccion: medico-service =====
+server:
+  port: 9097
+
+spring:
+  datasource:
+    url: jdbc:mysql://servidor/bd_medico
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+empresa:
+  ambiente: produccion

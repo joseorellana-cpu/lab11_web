@@ -1,0 +1,9 @@
+# Guia del laboratorio (no se sube)
+*.docx
+guia.txt
+
+# Compilados e IDE
+target/
+.idea/
+*.iml
+*.log

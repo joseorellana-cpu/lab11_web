@@ -1,0 +1,22 @@
+# ===== Perfil de produccion: cita-service =====
+server:
+  port: 9098
+
+spring:
+  datasource:
+    url: jdbc:mysql://servidor/bd_cita
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+empresa:
+  ambiente: produccion
+
+servicios:
+  paciente:
+    url: http://servidor:9096
+  medico:
+    url: http://servidor:9097

@@ -1,0 +1,20 @@
+# Pruebas automaticas con H2 en memoria (no necesitan MySQL)
+spring:
+  application:
+    name: cita-service
+  datasource:
+    url: jdbc:h2:mem:bd_cita_test;DB_CLOSE_DELAY=-1;MODE=MySQL
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+empresa:
+  ambiente: pruebas
+
+# URLs de los microservicios que consume cita-service
+servicios:
+  paciente:
+    url: http://localhost:8086
+  medico:
+    url: http://localhost:8087

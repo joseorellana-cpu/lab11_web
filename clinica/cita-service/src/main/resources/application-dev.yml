@@ -1,0 +1,24 @@
+# ===== Perfil de desarrollo: cita-service =====
+server:
+  port: 8088
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/bd_cita_dev?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+
+empresa:
+  ambiente: desarrollo
+
+# URLs de los microservicios que consume cita-service
+servicios:
+  paciente:
+    url: http://localhost:8086
+  medico:
+    url: http://localhost:8087
