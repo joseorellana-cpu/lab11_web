@@ -13,14 +13,12 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPedido;
 
-    @NotNull(message = "La fecha es obligatoria")
+    @Column(nullable = false)
     private LocalDate fecha;
 
-    @NotNull(message = "El cliente es obligatorio")
+    @Column(nullable = false)
     private Long idCliente;
 
-    @NotNull(message = "El total es obligatorio")
-    @PositiveOrZero(message = "El total no puede ser negativo")
     private Double total;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)

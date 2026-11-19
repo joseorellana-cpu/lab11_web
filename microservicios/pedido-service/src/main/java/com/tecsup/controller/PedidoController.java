@@ -1,11 +1,14 @@
 package com.tecsup.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.tecsup.dto.PedidoDTO;
+import com.tecsup.dto.PedidoDetalleDTO;
 import com.tecsup.model.Pedido;
 import com.tecsup.services.PedidoService;
 
@@ -31,19 +34,24 @@ public class PedidoController {
         return service.buscarPorId(id);
     }
 
+    @GetMapping("/{id}/detalle")
+    public PedidoDetalleDTO detalle(@PathVariable Long id) {
+        return service.detalle(id);
+    }
+
     @PostMapping
-    public ResponseEntity<Pedido> guardar(@Valid @RequestBody Pedido pedido) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(pedido));
+    public ResponseEntity<Pedido> guardar(@Valid @RequestBody PedidoDTO dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dto));
     }
 
     @PutMapping("/{id}")
-    public Pedido actualizar(@PathVariable Long id, @Valid @RequestBody Pedido pedido) {
-        return service.actualizar(id, pedido);
+    public Pedido actualizar(@PathVariable Long id, @Valid @RequestBody PedidoDTO dto) {
+        return service.actualizar(id, dto);
     }
 
     @DeleteMapping("/{id}")
-    public String eliminar(@PathVariable Long id) {
+    public Map<String, String> eliminar(@PathVariable Long id) {
         service.eliminar(id);
-        return "Pedido eliminado correctamente";
+        return Map.of("mensaje", "Pedido eliminado correctamente");
     }
 }

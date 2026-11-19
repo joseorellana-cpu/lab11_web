@@ -1,5 +1,6 @@
 package com.tecsup.model;
 
+import com.tecsup.dto.CategoriaDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -11,19 +12,20 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "El nombre es obligatorio")
+    @Column(nullable = false, length = 150)
     private String nombre;
 
-    @NotNull(message = "El precio es obligatorio")
-    @Positive(message = "El precio debe ser mayor que cero")
+    @Column(nullable = false)
     private Double precio;
 
-    @NotNull(message = "El stock es obligatorio")
-    @PositiveOrZero(message = "El stock no puede ser negativo")
+    @Column(nullable = false)
     private Integer stock;
 
-    @NotNull(message = "La categoria es obligatoria")
+    @Column(name = "categoria_id", nullable = false)
     private Long categoriaId;
+
+    @Transient
+    private CategoriaDTO categoria;
 
     public Long getId() {
         return id;
@@ -63,6 +65,14 @@ public class Producto {
 
     public void setCategoriaId(Long categoriaId) {
         this.categoriaId = categoriaId;
+    }
+
+    public CategoriaDTO getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(CategoriaDTO categoria) {
+        this.categoria = categoria;
     }
 
 }

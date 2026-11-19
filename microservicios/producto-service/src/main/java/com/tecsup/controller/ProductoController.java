@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.tecsup.dto.ProductoDTO;
 import com.tecsup.model.Producto;
 import com.tecsup.services.ProductoService;
 
@@ -33,13 +34,13 @@ public class ProductoController {
     }
 
     @PostMapping
-    public ResponseEntity<Producto> guardar(@Valid @RequestBody Producto producto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(producto));
+    public ResponseEntity<Producto> guardar(@Valid @RequestBody ProductoDTO dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dto));
     }
 
     @PutMapping("/{id}")
-    public Producto actualizar(@PathVariable Long id, @Valid @RequestBody Producto producto) {
-        return service.actualizar(id, producto);
+    public Producto actualizar(@PathVariable Long id, @Valid @RequestBody ProductoDTO dto) {
+        return service.actualizar(id, dto);
     }
 
     @DeleteMapping("/{id}")

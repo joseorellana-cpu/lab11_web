@@ -14,9 +14,3 @@ spring:
 
 empresa:
   ambiente: produccion
-
-servicios:
-  paciente:
-    url: http://servidor:9096
-  medico:
-    url: http://servidor:9097

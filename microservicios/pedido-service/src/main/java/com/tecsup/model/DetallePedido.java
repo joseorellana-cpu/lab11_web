@@ -12,14 +12,12 @@ public class DetallePedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDetalle;
 
-    @NotNull(message = "El producto es obligatorio")
+    @Column(nullable = false)
     private Long idProducto;
 
-    @NotNull(message = "La cantidad es obligatoria")
-    @Positive(message = "La cantidad debe ser mayor que cero")
+    @Column(nullable = false)
     private Integer cantidad;
 
-    @NotNull(message = "El precio es obligatorio")
     private Double precio;
 
     @JsonIgnore

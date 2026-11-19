@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.tecsup.dto.ClienteDTO;
 import com.tecsup.model.Cliente;
 import com.tecsup.services.ClienteService;
 
@@ -33,13 +34,13 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> guardar(@Valid @RequestBody Cliente cliente) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(cliente));
+    public ResponseEntity<Cliente> guardar(@Valid @RequestBody ClienteDTO dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dto));
     }
 
     @PutMapping("/{id}")
-    public Cliente actualizar(@PathVariable Long id, @Valid @RequestBody Cliente cliente) {
-        return service.actualizar(id, cliente);
+    public Cliente actualizar(@PathVariable Long id, @Valid @RequestBody ClienteDTO dto) {
+        return service.actualizar(id, dto);
     }
 
     @DeleteMapping("/{id}")

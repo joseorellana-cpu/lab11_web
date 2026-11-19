@@ -1,10 +1,11 @@
 # Lab 11 – Creación de Microservicios
 
-Spring Boot 4.1 · Java 25 · Maven · MySQL · YAML con perfiles `dev` y `prod`.
+Spring Boot 4.0.9 · Spring Cloud 2025.1.4 (Eureka) · Java 25 · Maven · MySQL · YAML con perfiles `dev` y `prod`.
 
 ## Estructura
 
 ```
+eureka-server            8761   registro y descubrimiento de servicios
 microservicios/          <- procedimiento de la guía (tienda)
   categoria-service      8082   bd_categoria_dev
   cliente-service        8081   bd_cliente_dev
@@ -20,8 +21,23 @@ postman/                 colección con todas las pruebas
 
 Cada microservicio tiene la estructura `controller`, `model`, `dto`, `exception`, `repository`, `services`, y su configuración en `application.yml` (perfil activo), `application-dev.yml` y `application-prod.yml` (puertos 909x y servidor remoto).
 
+## Eureka: registro, descubrimiento y comunicación
+
+- `eureka-server` (`@EnableEurekaServer`, puerto 8761). Panel: http://localhost:8761
+- Cada servicio tiene `spring-cloud-starter-netflix-eureka-client` y se registra con su `spring.application.name`.
+- Los servicios se llaman por **nombre**, no por host y puerto: `RestClient` con `@LoadBalanced` (`config/RestClientConfig`) y URL `http://categoria-service`, `http://cliente-service`, etc. Spring Cloud LoadBalancer consulta a Eureka y elige la instancia.
+
+| Consumidor | Consume a | Para qué |
+|---|---|---|
+| producto-service | categoria-service | validar la categoría al registrar y mostrarla al consultar |
+| pedido-service | cliente-service, producto-service | validar cliente activo y stock; tomar el precio actual y calcular el total; `GET /api/pedidos/{id}/detalle` |
+| cita-service | paciente-service, medico-service | validar paciente y médico activos; `GET /api/citas/{id}/detalle` |
+
+Respuestas HTTP: 200/201 (éxito), 400 (validación del DTO o parámetro inválido), 404 (no existe, también en el servicio remoto), 409 (duplicado, stock insuficiente, estado inválido), 500 (error no previsto), 503 (servicio consumido caído).
+
 ## Ejecución
 
+0. Iniciar primero `eureka-server`.
 1. Ejecutar `database/bases_de_datos.sql` en MySQL (las URL también usan `createDatabaseIfNotExist=true`).
 2. Abrir la carpeta en IntelliJ y ejecutar la clase principal de cada servicio.
 3. Para la clínica, iniciar primero `paciente-service` y `medico-service`, y luego `cita-service`.
@@ -58,7 +74,7 @@ PROGRAMADA ──► CONFIRMADA ──► ATENDIDA
 
 ## Observaciones
 
-1. Se usó Spring Boot 4.1.2 (parche de la 4.1.0 indicada en la guía) porque es la versión disponible localmente con todas las dependencias.
+1. Se usó Spring Boot 4.0.9 en lugar de 4.1.0: Spring Cloud 2025.1 (Eureka) solo es compatible con Spring Boot 4.0.x.
 2. En el código de la guía, `Pedido` y `DetallePedido` se referencian mutuamente y el JSON entraría en un bucle infinito; se agregó `@JsonIgnore` en `DetallePedido.pedido`.
 3. Las llaves foráneas entre tablas de distintos microservicios (`cita` → `paciente`/`medico`) no pueden existir en bases separadas; la integridad se valida mediante llamadas HTTP.
 4. Los controladores de la guía comparaban con `null` tras `service.obtener()`, pero ese método lanza `ResourceNotFoundException`; el 404 lo devuelve el `GlobalExceptionHandler`.

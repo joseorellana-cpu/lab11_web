@@ -9,12 +9,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
+eureka:
+  client:
+    enabled: false
 empresa:
   ambiente: pruebas
-
-# URLs de los microservicios que consume cita-service
-servicios:
-  paciente:
-    url: http://localhost:8086
-  medico:
-    url: http://localhost:8087

@@ -11,23 +11,22 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "El nombre es obligatorio")
+    @Column(nullable = false, length = 100)
     private String nombre;
 
-    @NotBlank(message = "Los apellidos son obligatorios")
+    @Column(nullable = false, length = 100)
     private String apellidos;
 
+    @Column(length = 200)
     private String direccion;
 
-    @Pattern(regexp = "\\d{9}", message = "El telefono debe tener 9 digitos")
+    @Column(length = 9)
     private String telefono;
 
-    @NotBlank(message = "El DNI es obligatorio")
-    @Pattern(regexp = "\\d{8}", message = "El DNI debe tener 8 digitos")
-    @Column(unique = true, length = 8)
+    @Column(unique = true, nullable = false, length = 8)
     private String nroDni;
 
-    @NotBlank(message = "El estado es obligatorio")
+    @Column(nullable = false, length = 20)
     private String estado;
 
     public Long getId() {
