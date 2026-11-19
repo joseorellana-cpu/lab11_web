@@ -7,3 +7,6 @@ target/
 .idea/
 *.iml
 *.log
+
+# Guia personal de entrega
+PASO_A_PASO.md
